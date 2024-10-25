@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} :: {{ block.super }} {% endblock %}
+
+{% block content %}
+  <div class="outer-container">
+    <div class="profile-container">
+      <div class="profile-header">
+        <h2>Обратная связь</h2>
+      </div>
+      <div class="card border-0">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+              <br>
+            <button type="submit" class="btn_1">Отправить</button>
+            {% for message in messages %}
+            {{ message }}
+            <br>
+            {% endfor %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

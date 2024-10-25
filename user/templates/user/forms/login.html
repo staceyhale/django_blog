@@ -1,0 +1,46 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}{{ title }} :: {{ block.super }} {% endblock %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#<h1>Авторизация</h1>#}
+{##}
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p  }}#}
+{#    <br>#}
+{#    <button type ="submit" class="btn btn-primary btn-block">Авторизация</button>#}
+{#</form>#}
+{##}
+{#{% endblock %}#}
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} :: {{ block.super }} {% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    {{ message }}
+    <br>
+{% endfor %}
+<div class="outer-container">
+    <div class="profile-container">
+      <div class="profile-header">
+        <h2>Авторизация</h2>
+      </div>
+      <div class="card border-0">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <button type ="submit" class="btn btn-sm btn-edit-profile">Авторизация</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

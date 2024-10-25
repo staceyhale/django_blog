@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} :: {{ block.super }} {% endblock %}
+
+{% block content %}
+
+<div class="outer-container">
+    <div class="profile-container">
+        <div class="profile-header">
+            <h2>User Profile</h2>
+        </div>
+        <div class="card border-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <figure>
+                            <img src="{{ profile.photo.url }}" class="img-fluid rounded-0" alt="{{ profile.user.username }}" width="260" height="227">
+                        </figure>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-text">
+                            <ul>
+                                <p>Никнейм: {{ profile.user.username }}</p>
+
+                                {% if profile.user.first_name %}
+                                    <p>Имя: {{ profile.user.first_name }}</p>
+                                {% endif %}
+
+                                {% if profile.user.last_name %}
+                                    <p>Фамилия: {{ profile.user.last_name }}</p>
+                                {% endif %}
+
+                                    <p>Заходил: {{ profile.user.last_login }}</p>
+
+                                {% if profile.birth_date %}
+                                    <p>Дата рождения: {{ profile.birth_date }}</p>
+                                {% endif %}
+
+                                {% if profile.bio %}
+                                    <p>О себе: {{ profile.bio }}</p>
+                                {% endif %}
+
+                            </ul>
+                            <br>
+                            <a href="{% url 'user:profile_edit' user=profile.user.username %}" class="btn btn-sm btn-edit-profile">Редактировать профиль</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

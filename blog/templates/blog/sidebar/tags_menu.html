@@ -1,0 +1,12 @@
+<div class="single_sidebar_wiget" style="margin-left: 20px;">
+    <div class="sidebar_tittle">
+        <h3>Tags</h3>
+    </div>
+    {% for tag in tags %}
+        <div class="single_catagory_item category">
+            <ul class="list-unstyled">
+                <li><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a> <span>({{ tag.post_count}})</span></li>
+            </ul>
+        </div>
+    {% endfor %}
+</div>

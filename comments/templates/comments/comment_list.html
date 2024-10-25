@@ -1,0 +1,61 @@
+{% for comment in comments %}
+    {% if comment.parents %}
+        <div class="comment-list" style="padding-left: 50px">
+    {% else %}
+        <div class="comment-list">
+    {% endif %}
+        <div class="single-comment justify-content-between d-flex">
+            <div class="user justify-content-between d-flex">
+                <div class="thumb">
+                    <img src="{{ comment.profile.photo.url }}" alt="{{ comment.profile.username }}" width="50"
+                         height="70">
+                </div>
+                <div class="desc">
+                    <p class="comment">
+                        {{ comment.content }}
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <h5>
+                                <a href="#">{{ comment.profile.user.username }}</a>
+                            </h5>
+                            <p class="date">{{ comment.created_at|date:"d E, Y, h:i " }}</p>
+                        </div>
+
+                        <div class="reply-btn">
+                            <a href="javascript:undefined;"
+                               onclick="scrollToCommentForm(); addComment('{{ comment.profile.user.username }}', '{{ comment.id }}');"
+                               class="btn-reply text-uppercase">reply</a>
+                        </div>
+
+                        {% if request.user == comment.profile.user %}
+                            <form method="post" action="{% url 'comments:delete' %}" id="deleteComment">
+                                {% csrf_token %}
+                                <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                <input type="submit" value="Delete">
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if comment.children.all %}
+        {% include "comments/comment_list.html" with comments=comment.children.all %}
+    {% endif %}
+{% endfor %}
+
+<script>
+    function scrollToCommentForm() {
+        document.getElementById("newComment").scrollIntoView()
+    }
+
+    function addComment(username, id) {
+        document.getElementById("contactparents").value = id;
+        let comment = document.getElementById("comment");
+        comment.innerText = `${username}, `;
+        let end = comment.value.length;
+        comment.setSelectionRange(end, end);
+        comment.focus();
+    }
+</script>

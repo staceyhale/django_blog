@@ -1,0 +1,9 @@
+{% load static %}
+
+<div class="header_social_icon d-none d-lg-block">
+    <ul>
+    {% for network in networks %}
+        <li><a href="{{ network.url }}" class="d-none d-lg-block"><i class="{{ network.icon_class }}"></i></a></li>
+    {% endfor %}
+    </ul>
+</div>

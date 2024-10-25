@@ -1,0 +1,17 @@
+<section class="banner_post">
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+            {% for post in posts_with_most_comments %}
+            <div class="banner_post_1 banner_post_bg_1">
+                <img src="{{ post.photo.url }}" alt="{{ post.title }}" width="580" height="500">
+                <div class="D8BFD8 text-center">
+                    <a href="{{ post.get_absolute_url  }}"><h5>{{ post.category }}</h5></a>
+                    <a href="{{ post.get_absolute_url  }}"><h2>{{ post.title }}</h2></a>
+                    <h4>{{ post.comments.count }} comments</h4>
+                    <p>{{ post.created_at|date:"d E, Y" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

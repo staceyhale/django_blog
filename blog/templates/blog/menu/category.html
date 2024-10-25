@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load sidebar %}
+
+{% block title %}{{ title }} :: {{ block.super }} {% endblock %}
+
+{% block content %}
+
+<section class="all_post section_padding">
+    <div class="container">
+        <div class="sidebar_widget">
+            {% show_category_menu %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

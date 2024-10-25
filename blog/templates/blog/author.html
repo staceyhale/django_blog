@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="blog-author">
+    <div class="media align-items-center">
+        <img src="{{ post.author.photo.url }}" class="img-fluid rounded-0" alt="{{ post.author.user.username }}" width="90" height="90">
+        <div class="media-body">
+            <a>
+                <h4>{{ post.author.user.first_name }} {{ post.author.user.last_name }}</h4>
+            </a>
+            <p>{{ post.author.bio }}</p>
+        </div>
+    </div>
+</div>

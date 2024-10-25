@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} :: {{ block.super }} {% endblock %}
+
+{% block content %}
+
+<section class="all_post section_padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8">
+
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="single_post post_1">
+                            <div class="single_post_img">
+
+                                {% if post.photo %}
+                                <img src="{{ post.photo.url }}" alt="{{ post.title }}" width="360" height="327">
+                                {% else %}
+                                <img src="https://img.freepik.com/free-photo/gloomy-landscape-of-mountain-lake_1398-2294.jpg?size=300&ext=jpg"
+                                 alt="{{ post.title }}">
+                                {% endif %}
+                            </div>
+
+                            <div class="single_post_text text-center">
+                              <a href="{{ post.category.get_absolute_url }}">  <h5>{{ post.category }}</h5></a>
+                              <a href="{{ post.get_absolute_url }}"> <h2>{{ post.title }}</h2></a>
+                                <p>{{ post.created_at|date:"d E Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>По вашему запросу ничего не найдено</p>
+                    {% endfor %}
+                </div>
+
+                {% if page_obj.has_other_pages %}
+                <div class="page_pageniation">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+
+                            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                                <a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+
+                            {% for p in page_obj.paginator.page_range %}
+                                <li class="page-item {% if page_obj.number == p %}active{% endif %}">
+                                    <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                                </li>
+                            {% endfor %}
+
+                            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                                <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}">Next</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

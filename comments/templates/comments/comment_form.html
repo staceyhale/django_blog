@@ -1,0 +1,20 @@
+<div class="comment-form" id="newComment">
+    <h4>Leave a Reply</h4>
+    <form id="commentForm" method="post" action="{% url 'comments:create' %}">
+        {% csrf_token %}
+        <input type="hidden" name="parents" id="contactparents" value="">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="post_id" value="{{ post.id }}">
+                    <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9"
+                                            placeholder="Write Comment"></textarea>
+                    {{ comment_form.captcha }}
+                    <div class="load_btn">
+                         <button type="submit" class="btn_1">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

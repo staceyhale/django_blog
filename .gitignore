@@ -126,7 +126,6 @@ dmypy.json
 
 # Pyre type checker
 /django_blog/settings/development.py
-/blog/static/
 .idea/
 .pyre/
 /media/

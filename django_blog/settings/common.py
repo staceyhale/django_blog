@@ -78,6 +78,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+# gettext = lambda s: s
+# LANGUAGES = (
+#     ('ru', gettext('Russian')),
+#     ('en', gettext('English')),
+# )
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "blog/static"),

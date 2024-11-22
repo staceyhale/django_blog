@@ -1,0 +1,31 @@
+[settings]
+DEBUG = true
+ALLOWED_HOSTS = ['127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1']
+
+[smtp]
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = "465"
+EMAIL_USE_TLS = false
+EMAIL_USE_SSL = true
+
+[db]
+POSTGRES_HOST = 'localhost'
+POSTGRES_PORT = '5432'
+
+[recaptcha]
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+[celery]
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASKS_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+[celery.broker_transport_options]
+visibility_timeout = 3600
+
+bind = '127.0.0.1:8000'
+workers = 4
+user = "anastasia"
+timeout = 120

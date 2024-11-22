@@ -135,3 +135,8 @@ dmypy.json
 /db.json
 /database/
 /dev.env
+/.env
+/config/dev_gunicorn.conf.py
+/config/gunicorn.conf.py
+/config/
+/.env_dev

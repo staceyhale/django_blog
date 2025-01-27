@@ -45,4 +45,3 @@ class SubscribeEmail(View):
             return redirect(self.success_url)
         messages.error(self.request, 'Ошибка подписки')
         return redirect(self.success_url)
-

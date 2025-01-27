@@ -1,5 +1,9 @@
 import os
 from pathlib import Path
+import django.utils.translation as original_translation
+from django.utils.translation import gettext_lazy
+
+original_translation.ugettext_lazy = gettext_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 

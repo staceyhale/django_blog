@@ -14,3 +14,6 @@ urlpatterns = [
     path('search/', Search.as_view(), name='search'),
 ]
 
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

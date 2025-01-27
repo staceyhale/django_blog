@@ -1,0 +1,11 @@
+__pycache__/
+.env
+.git
+.gitignore
+.idea
+Dockerfile
+docker-compose.yml
+dump.rdb
+.venv/
+django_blog/settings/development.py
+database/

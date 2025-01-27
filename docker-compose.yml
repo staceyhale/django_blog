@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres
+    restart: always
+    container_name: django_blog_postgres
+    env_file:
+      - .env
+    volumes:
+      - ./database:/var/lib/postgresql/data
+
+  redis:
+    image: redis
+    restart: always
+    container_name: django_blog_redis
+
+  web:
+    build: .
+    restart: always
+    container_name: django_blog_web
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./media:/django_blog/media
+      - ./static:/django_blog/static
+    env_file:
+      - .env
+    command: bash -c "./wait-for-postgres.sh -t 0 ${POSTGRES_HOST}:${POSTGRES_PORT} -- ./docker-entrypoint.sh"
+    ports:
+      - ${WEB_PORT}:${WEB_PORT}
+
+  celery:
+    build: .
+    restart: always
+    container_name: django_blog_celery
+    command: celery -A django_blog worker -l INFO
+    env_file:
+      - .env
+    depends_on:
+      - web
+
+  nginx:
+    image: nginx
+    restart: always
+    container_name: django_blog_nginx
+    env_file:
+      - .env
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./static:/static
+      - ./media:/media
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+    depends_on:
+      - web

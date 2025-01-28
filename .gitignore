@@ -139,3 +139,5 @@ dmypy.json
 /config/gunicorn.conf.py
 /config/
 /.env_dev
+/blog/static/
+

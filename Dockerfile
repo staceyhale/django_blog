@@ -13,10 +13,3 @@ RUN apt update -y \
     && python -m pip install --upgrade pip \
 	&& pip install -r requirements.txt \
 	&& pip install gunicorn
-
-RUN useradd -m -s /bin/bash stacy
-
-RUN chown -R stacy:stacy /django_blog
-
-USER stacy
-

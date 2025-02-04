@@ -2,7 +2,7 @@
 DEBUG = true
 ALLOWED_HOSTS = ['127.0.0.1', 'web']
 INTERNAL_IPS = ['127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:81']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
 
 [smtp]
 EMAIL_HOST = "smtp.gmail.com"

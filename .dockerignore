@@ -9,3 +9,5 @@ dump.rdb
 .venv/
 django_blog/settings/development.py
 database/
+media/
+static/

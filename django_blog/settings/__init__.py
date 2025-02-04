@@ -1,3 +1,6 @@
 from .common import *
 
-from .production import *
+try:
+    from .development import *
+except ModuleNotFoundError:
+    from .production import *
